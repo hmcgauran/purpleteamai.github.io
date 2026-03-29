@@ -818,12 +818,15 @@ function showHome(){
   document.getElementById('homepage').style.display='block';
   document.querySelectorAll('.article-page').forEach(p=>p.style.display='none');
   window.scrollTo(0,0);
+  history.pushState(null,'',window.location.pathname);
 }
 function showArticle(id){
   document.getElementById('homepage').style.display='none';
   document.querySelectorAll('.article-page').forEach(p=>p.style.display='none');
-  document.getElementById(id).style.display='block';
+  var el=document.getElementById(id);
+  if(el){ el.style.display='block'; }
   window.scrollTo(0,0);
+  history.pushState(null,'','#'+id);
 }
 function showSection(id){
   showHome();
@@ -832,6 +835,16 @@ function showSection(id){
     if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
   },50);
 }
+function routeHash(){
+  var hash=window.location.hash.replace('#','');
+  if(hash && document.getElementById(hash)){
+    showArticle(hash);
+  } else {
+    showHome();
+  }
+}
+window.addEventListener('popstate', routeHash);
+document.addEventListener('DOMContentLoaded', routeHash);
 
 </script>
 </body>
