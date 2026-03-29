@@ -225,10 +225,10 @@ footer{padding:34px 0 58px}.footer-inner{display:flex;justify-content:space-betw
             <h2>Weekly insights for defensive practitioners</h2>
             <p>No vendor pitches. No beginner content. Just concise, opinionated analysis on purple teaming, detection engineering, and the operational decisions that actually matter.</p>
           </div>
-          <form class="news-form" onsubmit="return false">
-            <input type="email" placeholder="you@company.com" aria-label="Email address">
+          <form class="news-form" action="https://purpleteam.beehiiv.com/subscribe" method="get" target="_blank">
+            <input type="email" name="email" placeholder="you@company.com" aria-label="Email address" required>
             <button class="btn btn-primary" type="submit">Subscribe</button>
-            <div class="news-note">One essay per week. Unsubscribe any time.</div>
+            <div class="news-note">One essay per week. Opens in a new tab to complete signup. Unsubscribe any time.</div>
           </form>
         </div>
       </div>
