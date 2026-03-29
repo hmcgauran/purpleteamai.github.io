@@ -1,70 +1,632 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4VP5E6WHCH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4VP5E6WHCH');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purple Team AI</title>
-    <meta name="description" content="Discover how Purple Team AI leverages artificial intelligence to revolutionize cybersecurity, bridging the gap between offense and defense for superior digital protection.">
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; }
-        .container { max-width: 1200px; margin: auto; padding: 20px; }
-        header { background: linear-gradient(45deg, #5b57a6, #4b0082); color: #fff; padding: 40px 0; text-align: center; }
-        header h1 { font-size: 2.5rem; margin-bottom: 20px; }
-        header p { font-size: 1.2rem; }
-        section { padding: 40px 0; }
-        h2 { color: #4b0082; margin-bottom: 20px; font-size: 2rem; }
-        p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px; }
-        .contact { background-color: #f0f0f0; padding: 40px; text-align: center; }
-        .contact p { margin-bottom: 10px; }
-        footer { background-color: #333; color: white; text-align: center; padding: 20px; font-size: 1rem; }
-        .btn { display: inline-block; padding: 10px 20px; background-color: #4b0082; color: #fff; border-radius: 5px; transition: background-color 0.3s; text-decoration: none; }
-        .btn:hover { background-color: #5b57a6; }
-        /* Smooth scroll */
-        html { scroll-behavior: smooth; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>purpleteam.ai | Purple Teaming for Practitioners</title>
+<meta name="description" content="Practitioner-led essays on purple teaming, detection engineering, red team realism, and blue team effectiveness.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09111b;
+  --bg-2:#0d1724;
+  --panel:#111c2a;
+  --panel-2:#142133;
+  --ink:#ebf1f7;
+  --muted:#9aabbe;
+  --soft:#70839b;
+  --line:rgba(194,209,227,.14);
+  --line-strong:rgba(194,209,227,.26);
+  --purple:#8b5cf6;
+  --purple-soft:#c4b5fd;
+  --blue:#7dd3fc;
+  --green:#64f0b5;
+  --shadow:0 24px 80px rgba(0,0,0,.34);
+  --content:760px;
+  --wide:1180px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  color:var(--ink);
+  line-height:1.65;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(139,92,246,.12), transparent 26%),
+    radial-gradient(circle at 85% 0%, rgba(125,211,252,.08), transparent 24%),
+    linear-gradient(180deg, #09111b 0%, #0b1320 54%, #09111b 100%);
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;opacity:.12;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(180deg, rgba(0,0,0,.45), transparent 72%);
+}
+a{color:var(--purple-soft);text-decoration:none}
+a:hover{color:#fff}
+.container{width:min(var(--wide), calc(100% - 48px));margin:0 auto}
+.container-post{width:min(940px, calc(100% - 48px));margin:0 auto}
+.nav{position:sticky;top:0;z-index:50;background:rgba(9,17,27,.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(194,209,227,.08)}
+.nav-inner{width:min(var(--wide), calc(100% - 48px));margin:0 auto;padding:18px 0;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:14px;cursor:pointer;color:#fff}
+.brand-mark{width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,var(--purple),var(--blue));box-shadow:0 0 24px rgba(139,92,246,.45)}
+.brand-text{font-size:1.04rem;font-weight:800;letter-spacing:-.04em}.brand-text span{color:var(--purple-soft)}
+.nav-links{display:flex;gap:24px;list-style:none}.nav-links a{color:var(--muted);font-size:.94rem;font-weight:500}.nav-links a:hover{color:#fff}
+.homepage{display:block}
+.masthead{padding:72px 0 34px;border-bottom:1px solid var(--line)}
+.mast-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);gap:34px;align-items:end}
+.kicker{display:inline-flex;align-items:center;gap:10px;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c6d5e8;margin-bottom:24px}
+.kicker::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--green)}
+.masthead h1{font-size:clamp(2.9rem,6vw,5.6rem);line-height:.94;letter-spacing:-.065em;max-width:10ch;margin-bottom:22px}
+.masthead h1 span{background:linear-gradient(135deg,#ffffff 0%, #d8ccff 55%, #a5e3ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:58ch;color:#beccdc;font-size:1.12rem;margin-bottom:30px}
+.actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:14px;font-size:.94rem;font-weight:700;border:1px solid transparent;transition:.18s ease}
+.btn-primary{background:linear-gradient(135deg,var(--purple),#6d28d9);color:#fff;box-shadow:0 14px 28px rgba(109,40,217,.28)}
+.btn-primary:hover{transform:translateY(-1px);color:#fff}
+.btn-secondary{border-color:var(--line-strong);background:rgba(255,255,255,.02);color:#dce6f2}.btn-secondary:hover{background:rgba(255,255,255,.05);color:#fff}
+.editorial-note{padding:30px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));box-shadow:var(--shadow)}
+.editorial-note .small{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:#b7c8de;font-weight:700;margin-bottom:12px}
+.editorial-note h3{font-size:1.18rem;line-height:1.28;letter-spacing:-.03em;margin-bottom:14px}
+.editorial-note p{color:var(--muted);font-size:.97rem}
+.editorial-points{display:grid;gap:12px;margin-top:18px}
+.editorial-points div{padding:14px 15px;border-radius:16px;border:1px solid rgba(194,209,227,.08);background:rgba(7,12,20,.26);color:#d2dcea;font-size:.9rem}
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;gap:22px;align-items:end;margin-bottom:28px}.section-head h2{font-size:2.1rem;letter-spacing:-.05em}.section-head p{max-width:54ch;color:var(--muted)}.eyebrow{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:#bfd0e4;font-weight:700;margin-bottom:10px}
+.featured-card{display:grid;grid-template-columns:1.15fr .85fr;gap:0;border:1px solid var(--line);border-radius:30px;overflow:hidden;background:linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));box-shadow:var(--shadow);margin-bottom:22px}
+.featured-main{padding:34px 34px 30px 34px}
+.featured-side{padding:34px;border-left:1px solid var(--line);background:linear-gradient(180deg, rgba(139,92,246,.08), rgba(255,255,255,.02))}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.pill,.tag{display:inline-flex;align-items:center;padding:7px 11px;border-radius:999px;background:rgba(139,92,246,.12);border:1px solid rgba(196,181,253,.18);color:#d9cdff;font-size:.74rem;font-weight:700;letter-spacing:.03em}
+.meta-text{color:var(--muted);font-size:.82rem}
+.featured-card h3{font-size:2.2rem;line-height:1.02;letter-spacing:-.05em;margin-bottom:14px;max-width:12ch}
+.featured-card p{color:#c3d0df;font-size:1rem;max-width:58ch}
+.read-link{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:#fff;margin-top:22px}.read-link::after{content:'→';color:var(--purple-soft)}
+.side-stat{padding:0 0 18px 0;border-bottom:1px solid var(--line);margin-bottom:18px}.side-stat:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.side-stat strong{display:block;font-size:1.85rem;letter-spacing:-.05em;margin-bottom:4px}.side-stat span{color:var(--muted);font-size:.9rem}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.card{padding:24px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));box-shadow:var(--shadow);min-height:280px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .18s ease,border-color .18s ease}
+.card:hover{transform:translateY(-4px);border-color:rgba(196,181,253,.38)}
+.card h3{font-size:1.34rem;line-height:1.18;letter-spacing:-.04em;margin-bottom:12px}.card p{color:#c3d0df}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.panel{padding:30px;border-radius:26px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));box-shadow:var(--shadow)}
+.panel h3{font-size:1.35rem;letter-spacing:-.04em;margin-bottom:12px}.panel p{color:var(--muted);margin-bottom:12px}
+.profile{display:grid;grid-template-columns:88px 1fr;gap:18px;align-items:start}.avatar{width:88px;height:88px;border-radius:24px;background:linear-gradient(135deg,var(--purple),var(--blue));display:grid;place-items:center;font-size:1.55rem;font-weight:800;box-shadow:0 18px 36px rgba(125,211,252,.12)}
+.list{display:grid;gap:12px;margin-top:16px}.list div{padding:13px 14px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(194,209,227,.08);color:#d2dcea;font-size:.92rem}
+.newsletter{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:center;padding:36px;border-radius:30px;border:1px solid rgba(196,181,253,.18);background:linear-gradient(135deg, rgba(139,92,246,.14), rgba(125,211,252,.08) 58%, rgba(255,255,255,.04));box-shadow:var(--shadow)}
+.newsletter h2{font-size:2.2rem;letter-spacing:-.05em;margin-bottom:12px}.newsletter p{color:#d6e0eb;max-width:54ch}.news-form{display:grid;gap:12px}.news-form input{width:100%;padding:15px 16px;border-radius:16px;border:1px solid var(--line-strong);background:rgba(7,12,20,.54);color:#fff;font:inherit}.news-form input:focus{outline:none;border-color:#d8ccff;box-shadow:0 0 0 4px rgba(139,92,246,.12)}.news-note{font-size:.82rem;color:#ccdae9}
+footer{padding:34px 0 58px}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:.92rem}.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.article-page{display:none;padding:36px 0 68px}.back-link{display:inline-flex;align-items:center;gap:8px;margin-bottom:26px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:#dbe6f2;font-size:.9rem}.back-link:hover{background:rgba(255,255,255,.06)}
+.article-header{padding:18px 0 30px;border-bottom:1px solid var(--line);margin-bottom:30px}.article-header h1{font-size:clamp(2.3rem,5vw,4.2rem);line-height:1;letter-spacing:-.06em;max-width:11ch;margin-top:18px;margin-bottom:18px}.article-header-meta{display:flex;flex-wrap:wrap;gap:18px;color:var(--muted);font-size:.88rem}.article-header-meta .author{color:#fff;font-weight:700}
+.tags{display:flex;gap:10px;flex-wrap:wrap}
+.article-body{font-family:'Source Serif 4', Georgia, serif;font-size:1.24rem;line-height:1.82;color:#dde6f2}.article-body > *{max-width:var(--content);margin-left:auto;margin-right:auto}.article-body p,.article-body ul,.article-body ol,.article-body blockquote,.article-body pre,.article-body hr{margin-bottom:1.2em}.article-body h2,.article-body h3{max-width:var(--content);margin:1.9em auto .7em;font-family:'Inter',system-ui,sans-serif;color:#fff;letter-spacing:-.045em;line-height:1.1}.article-body h2{font-size:2.05rem}.article-body h3{font-size:1.36rem}.article-body strong{color:#fff}.article-body em{color:#eadfff}.article-body ul,.article-body ol{padding-left:1.35em}.article-body li{margin-bottom:.45em}.article-body blockquote{padding:24px 26px;border-left:4px solid var(--purple);background:linear-gradient(180deg, rgba(139,92,246,.13), rgba(255,255,255,.03));border-radius:0 18px 18px 0}.article-body blockquote p{margin:0;color:#eff4fb;font-style:italic}.article-body pre{padding:24px 26px;border-radius:22px;border:1px solid rgba(125,211,252,.18);background:#09111a;overflow:auto;box-shadow:inset 0 1px 0 rgba(255,255,255,.03), 0 20px 42px rgba(0,0,0,.24)}.article-body code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;color:#92f3c0;background:rgba(255,255,255,.06);padding:.18em .34em;border-radius:8px}.article-body pre code{background:none;padding:0;color:#edf4ff}.article-body hr{border:none;border-top:1px solid var(--line);margin-top:2.1em;padding-top:.2em}
+.article-nav{width:min(940px, calc(100% - 48px));margin:46px auto 0;padding-top:28px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:18px}.article-nav-item{padding:20px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.03)}.article-nav-item.next{text-align:right}.article-nav-label{font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin-bottom:8px}.article-nav-title{font-weight:700;color:#fff;line-height:1.4}
+@media (max-width:1000px){.mast-grid,.featured-card,.newsletter,.two-col,.cards{grid-template-columns:1fr}.featured-side{border-left:none;border-top:1px solid var(--line)}.featured-card h3{max-width:none}.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:720px){.container,.container-post{width:min(100% - 32px, var(--wide))}.nav-inner{padding:14px 0}.nav-links{gap:14px}.nav-links a{font-size:.88rem}.masthead{padding:48px 0 28px}.masthead h1{font-size:2.7rem}.section-head h2,.newsletter h2{font-size:1.72rem}.cards{grid-template-columns:1fr}.profile{grid-template-columns:1fr}.avatar{width:72px;height:72px}.article-header h1{font-size:2.35rem}.article-body{font-size:1.09rem}.article-nav{grid-template-columns:1fr}.article-nav-item.next{text-align:left}}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Empowering Cybersecurity with Purple Team AI</h1>
-            <p>Bridging the gap between attack and defense in cybersecurity through advanced AI integration.</p>
-            <a href="#contact" class="btn">Contact Us</a>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand" onclick="showHome()"><span class="brand-mark"></span><div class="brand-text">purple<span>team</span>.ai</div></div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showHome();return false">Essays</a></li>
+      <li><a href="#" onclick="showSection('about-section');return false">About</a></li>
+      <li><a href="#" onclick="showSection('newsletter-section');return false">Newsletter</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="homepage" id="homepage">
+  <header class="masthead">
+    <div class="container mast-grid">
+      <div>
+        <div class="kicker">For senior practitioners</div>
+        <h1>Purple teaming with <span>professional standards</span></h1>
+        <p class="lede">A practitioner-led publication on threat-model discipline, detection engineering, realistic red teaming, and the operational work required to make red and blue teams genuinely effective together.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#" onclick="showArticle('post1');return false">Read the essays</a>
+          <a class="btn btn-secondary" href="#" onclick="showSection('newsletter-section');return false">Join the newsletter</a>
         </div>
-    </header>
-    <div class="container">
-        <section id="what-is">
-            <h2>What is a Purple Team?</h2>
-            <p>Purple Teams represent a collaborative approach in cybersecurity, combining the offensive strategies of Red Teams with the defensive mechanisms of Blue Teams to create a more secure and resilient digital environment.</p>
-        </section>
-        <section id="role-of-ai">
-            <h2>The Role of AI in Purple Teaming</h2>
-            <p>Artificial Intelligence significantly enhances Purple Teaming by automating threat detection, simulating advanced cyberattacks, and utilizing predictive analytics to fortify cybersecurity measures.</p>
-        </section>
-        <section id="benefits">
-            <h2>Benefits of AI-Enhanced Purple Teaming</h2>
-            <p>Integrating AI into Purple Team strategies accelerates threat detection, fosters team synergy, and promotes a culture of continuous improvement in cybersecurity defense.</p>
-        </section>
-        <div id="contact" class="contact">
-            <h2>Contact Us</h2>
-            <p>Interested in leveraging AI for your cybersecurity team? Get in touch to explore Purple Team AI solutions.</p>
-            <p><a href = "mailto: info@purpleteam.ai">Send Email</a>
-
+      </div>
+      <aside class="editorial-note">
+        <div class="small">Editorial standard</div>
+        <h3>No vendor fluff, no generic frameworks, no theatre dressed up as strategy.</h3>
+        <p>This site is built for people who already know the basics and want sharper thinking on how security operations actually improve.</p>
+        <div class="editorial-points">
+          <div>Threat-model driven analysis, not checklist security.</div>
+          <div>Detection engineering grounded in baseline and environment.</div>
+          <div>Practical writing for teams that run real programmes.</div>
         </div>
+      </aside>
     </div>
-    <footer>
-        <p>&copy; 2024 Purple Team AI</p>
-    </footer>
+  </header>
+  <main>
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Featured essay</div>
+            <h2>Start here</h2>
+          </div>
+          <p>The opening piece sets the line: if your purple team exercises are not threat-model driven, they are producing noise, not insight.</p>
+        </div>
+        <article class="featured-card">
+          <div class="featured-main">
+            <div class="meta">
+              <span class="pill">Purple Teaming</span>
+              <span class="pill">Threat Modelling</span>
+              <span class="meta-text">20 March 2026 · 6 min read</span>
+            </div>
+            <h3><a href="#" onclick="showArticle('post1');return false">Your Purple Team Test Failed Because Your Threat Model Is Wrong</a></h3>
+            <p>You ran an exercise, the red team landed, the blue team missed the chain, and everyone assumed the tooling was the problem. Usually it is not. Usually the exercise tested an adversary that does not exist in your environment.</p>
+            <a class="read-link" href="#" onclick="showArticle('post1');return false">Read featured essay</a>
+          </div>
+          <div class="featured-side">
+            <div class="side-stat"><strong>4</strong><span>launch essays</span></div>
+            <div class="side-stat"><strong>25 years</strong><span>cybersecurity experience behind the writing</span></div>
+            <div class="side-stat"><strong>Practitioner-first</strong><span>written for operators and senior leaders, not buyers</span></div>
+          </div>
+        </article>
+        <div class="cards">
+          <article class="card">
+            <div>
+              <div class="meta"><span class="pill">Detection Engineering</span><span class="pill">Blue Team</span><span class="meta-text">27 March 2026 · 7 min</span></div>
+              <h3><a href="#" onclick="showArticle('post2');return false">Detection Engineering in a Real Environment: Why Generic Rules Fail</a></h3>
+              <p>Imported rulesets collapse when they hit a real estate. Effective detection starts with baseline, context, and ruthless precision.</p>
+            </div>
+            <a class="read-link" href="#" onclick="showArticle('post2');return false">Read essay</a>
+          </article>
+          <article class="card">
+            <div>
+              <div class="meta"><span class="pill">Red Team</span><span class="pill">Purple Teaming</span><span class="meta-text">3 April 2026 · 6 min</span></div>
+              <h3><a href="#" onclick="showArticle('post3');return false">Why Your Red Team Tests Are Designed to Fail, And You Don't Know It</a></h3>
+              <p>Unlimited scope, unrealistic access, and technique-first exercises create impressive findings and weak insight.</p>
+            </div>
+            <a class="read-link" href="#" onclick="showArticle('post3');return false">Read essay</a>
+          </article>
+          <article class="card">
+            <div>
+              <div class="meta"><span class="pill">Purple Teaming</span><span class="pill">Red + Blue</span><span class="meta-text">10 April 2026 · 8 min</span></div>
+              <h3><a href="#" onclick="showArticle('post4');return false">Purple Teaming That Actually Works: A Framework for Real Collaboration</a></h3>
+              <p>A practical operating model for teams that want measurable improvement rather than another quarterly ritual.</p>
+            </div>
+            <a class="read-link" href="#" onclick="showArticle('post4');return false">Read essay</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="about-section">
+      <div class="container two-col">
+        <div class="panel">
+          <div class="eyebrow">About the author</div>
+          <div class="profile">
+            <div class="avatar">HM</div>
+            <div>
+              <h3>Hugh McGauran</h3>
+              <p>Cybersecurity practitioner with 25 years of experience across enterprise security, red and blue collaboration, and detection engineering. Country Manager Ireland at Armis.</p>
+            </div>
+          </div>
+          <div class="list">
+            <div>Focus areas: purple team methodology, detection engineering, adversary emulation, operational realism.</div>
+            <div>Audience: senior security practitioners, technical leaders, detection engineers, red team and blue team operators.</div>
+            <div>Style: direct, field-informed, and sceptical of generic security advice that ignores environment and context.</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="eyebrow">What this publication is for</div>
+          <h3>An editorial site for serious practitioners</h3>
+          <p>PurpleTeamAI exists because too much security content is polished nonsense. Vendor campaigns are presented as strategy. Generic frameworks are recycled as expertise. Mature teams need something better.</p>
+          <p>This publication is for people who already understand the basics and want a more honest discussion about what to test, what to tune, what to stop doing, and how to make collaborative security actually work.</p>
+        </div>
+      </div>
+    </section>
+    <section id="newsletter-section">
+      <div class="container">
+        <div class="newsletter">
+          <div>
+            <div class="eyebrow">Newsletter</div>
+            <h2>Weekly insights for defensive practitioners</h2>
+            <p>No vendor pitches. No beginner content. Just concise, opinionated analysis on purple teaming, detection engineering, and the operational decisions that actually matter.</p>
+          </div>
+          <form class="news-form" onsubmit="return false">
+            <input type="email" placeholder="you@company.com" aria-label="Email address">
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+            <div class="news-note">Visual form is ready. Backend integration is still needed for live signups.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<!-- ═══════════════════════════════════ POST 1 ═══════════════════════════════════ -->
+<div class="article-page" id="post1">
+<div class="container-post">
+  <div class="article-page-inner">
+  <a class="back-link" href="#" onclick="showHome();return false">← All posts</a>
+  <div class="article-header">
+    <div class="tags">
+      <span class="tag">Purple Teaming</span>
+      <span class="tag">Threat Modelling</span>
+    </div>
+    <h1 style="margin-top:16px">Your Purple Team Test Failed Because Your Threat Model Is Wrong</h1>
+    <div class="article-header-meta">
+      <span class="author">Hugh McGauran</span>
+      <span>March 20, 2026</span>
+      <span>6 min read</span>
+    </div>
+  </div>
+  <div class="article-body">
+    <p>You ran a purple team exercise last week. Your red team executed a flawless attack chain: initial access via phishing, lateral movement via Kerberos relay, privilege escalation, and data exfiltration. Picture perfect.</p>
+    <p>Then you got the debrief: your EDR caught nothing. Your SIEM was silent. Your firewalls didn't alert. Your detection engineers looked at you and said, "Our tools are misconfigured."</p>
+    <p>They're wrong. And you probably are too.</p>
+    <p>The problem isn't your tools. It's that your red team tested an adversary that doesn't exist in your environment.</p>
+    <h2>The Fundamental Mismatch</h2>
+    <p>Here's what I see happen in most purple team programmes:</p>
+    <ol>
+      <li><strong>Red team is given a playbook.</strong> Usually MITRE ATT&amp;CK or some vendor-blessed "attack pattern." Test everything: initial access, lateral movement, persistence, exfil. Be creative.</li>
+      <li><strong>Blue team sits and watches.</strong> They monitor alerts. When nothing fires, they assume detection is broken. They tune. They add rules. They adjust thresholds.</li>
+      <li><strong>Repeat.</strong> Next quarter, red team runs the same tests. Still nothing fires (or things fire randomly, drowning in false positives). Conclusion: "We need better tooling."</li>
+    </ol>
+    <p>Here's what's actually happening: <strong>You're testing threat capabilities your environment doesn't support.</strong></p>
+    <h2>An Example</h2>
+    <p>Let's say you're a mid-sized financial services firm. Your threat model is: targeted APTs (FIN7, Lazarus), occasional script kiddies, insider threats.</p>
+    <p>Your environment: Windows 10/11 workstations, hardened build. Modern domain controllers with Kerberos hardening. Network segmentation: finance backend on isolated VLAN. EDR deployed globally. No plaintext credentials stored on endpoints. Conditional Access enforces MFA.</p>
+    <p>Your red team shows up and runs Mimikatz, tries Kerberos relay attacks, attempts lateral movement across network segments, and exfiltrates via unencrypted channels.</p>
+    <p><strong>Result:</strong> EDR blocks the binaries. Lateral movement fails (segmentation). Nothing detectable because nothing succeeds.</p>
+    <p>Your blue team concludes: "EDR is misconfigured. We need better visibility into Kerberos traffic."</p>
+    <p><strong>Wrong.</strong> Those attacks don't fit your threat model. An actual FIN7 intrusion into your environment would:</p>
+    <ul>
+      <li>Use living-off-the-land techniques (no Mimikatz)</li>
+      <li>Move laterally via legitimate admin tools (RDP, WinRM) already allowed in your firewall rules</li>
+      <li>Steal credentials from memory <em>over time</em>, not via flashy in-memory attacks</li>
+      <li>Exfil via HTTP/HTTPS, not SMB or DNS tunneling</li>
+    </ul>
+    <p>So your EDR <em>should</em> miss those attacks, because they're not your risk. Your tools are configured for your actual adversary, not the MITRE ATT&amp;CK checklist.</p>
+    <h2>The Real Cost of Environment-Agnostic Testing</h2>
+    <p>When you run tests that don't align with your threat model:</p>
+    <ol>
+      <li><strong>You get false confidence.</strong> Red team "successfully" executes techniques. You feel like you're being tested thoroughly. You're not.</li>
+      <li><strong>You waste blue team time.</strong> Detection engineers spend weeks building rules for attacks that will never happen to you.</li>
+      <li><strong>You create alert fatigue.</strong> All those rules for non-existent threats? They generate false positives. Your SOC tunes them down or disables them. Then an actual threat uses a legitimate technique you didn't monitor.</li>
+      <li><strong>You fund vendor marketing.</strong> Tool vendors love environment-agnostic testing. It justifies upgrading to the newest EDR feature. None of which you needed if your testing was threat-model-driven.</li>
+    </ol>
+    <h2>What Actually Works</h2>
+    <p>Stop testing "everything." Start testing what you're actually at risk from.</p>
+    <p><strong>Step 1: Define your threat model.</strong> Ask yourself: Who targets companies like mine? What are they after? What access do they typically start with? What's their environment awareness? Write this down. Three paragraphs, maximum.</p>
+    <p><strong>Step 2: Map your environment against that threat.</strong> What attack paths does your threat model realistically have access to? What techniques are <em>actually</em> possible? What detection gaps exist on those paths?</p>
+    <p><strong>Step 3: Test only the relevant paths.</strong> Your red team doesn't run the MITRE ATT&amp;CK playbook. They run <em>your</em> threat playbook.</p>
+    <p>If FIN7 uses spear-phishing and living-off-the-land lateral movement, test that. If they exfil via HTTPS, test that — and tune your detection to spot anomalous HTTPS traffic from workstations. If they're blocked by your segmentation, celebrate the segmentation and move to the next gap.</p>
+    <h2>The Honest Conversation</h2>
+    <blockquote><p>"Your tools are configured correctly for the threats you actually face. When red team tests succeed using techniques that wouldn't work in a real intrusion, that's not a detection failure — that's a sign your test wasn't threat-driven. Let's refocus on the adversaries who can actually hurt us."</p></blockquote>
+    <p>This conversation is uncomfortable because it implies your purple team programme might be theatre. But it's the one that matters.</p>
+    <h2>What's Next</h2>
+    <p>For your next purple team exercise:</p>
+    <ol>
+      <li>Spend time defining threat model, not technique selection</li>
+      <li>Have blue team validate which attack paths are realistic in <em>your</em> environment</li>
+      <li>Red team tests those paths, trying to evade detection on actual adversary techniques</li>
+      <li>Blue team tunes for <em>those specific</em> gaps</li>
+    </ol>
+    <p>The tests will be less flashy. You won't check every MITRE ATT&amp;CK technique. But when red team succeeds, it means something: you've found a real gap against a real threat. That's worth a lot more than catching Mimikatz on a hardened system that would never run it in the first place.</p>
+    <hr>
+    <p><em>Next: How to actually scope a red team exercise to your threat model. Plus: Real detection gaps found in a financial services engagement.</em></p>
+  </div>
+  <div class="article-nav">
+    <div class="article-nav-item"></div>
+    <div class="article-nav-item next">
+      <div class="article-nav-label">Next Post</div>
+      <a class="article-nav-title" href="#" onclick="showArticle('post2');return false">Detection Engineering in a Real Environment: Why Generic Rules Fail →</a>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════ POST 2 ═══════════════════════════════════ -->
+<div class="article-page" id="post2">
+<div class="container">
+  <a class="back-link" href="#" onclick="showHome();return false">← All posts</a>
+  <div class="article-header">
+    <div class="tags">
+      <span class="tag">Detection Engineering</span>
+      <span class="tag">Blue Team</span>
+    </div>
+    <h1 style="margin-top:16px">Detection Engineering in a Real Environment: Why Generic Rules Fail</h1>
+    <div class="article-header-meta">
+      <span class="author">Hugh McGauran</span>
+      <span>March 27, 2026</span>
+      <span>7 min read</span>
+    </div>
+  </div>
+  <div class="article-body">
+    <p>I walked into a SOC last month where they'd deployed 847 Sigma rules.</p>
+    <p>Eight hundred and forty-seven.</p>
+    <p>The detection engineers were proud. They'd built a comprehensive ruleset covering the entire MITRE ATT&amp;CK framework. Every technique had detection logic. Nothing would slip through, they said.</p>
+    <p>The SOC was drowning. Sixty percent of alerts were false positives. They'd stopped tuning months ago and just turned off entire rule categories. The analysts were burnt out, clicking "snooze" on everything.</p>
+    <p>Here's what nobody told them: <strong>Generic detection rules fail in real environments because real environments aren't generic.</strong></p>
+    <h2>The Rule That Doesn't Work</h2>
+    <p>Let's look at a real example. This is a common Sigma rule (simplified):</p>
+<pre><code><span class="keyword">title</span>: Suspicious PowerShell Execution
+<span class="keyword">detection</span>:
+  <span class="keyword">selection</span>:
+    EventID: 4688
+    CommandLine|contains:
+      - <span class="string">'IEX'</span>
+      - <span class="string">'Invoke-Expression'</span>
+      - <span class="string">'DownloadString'</span>
+  condition: selection</code></pre>
+    <p>This rule fires when PowerShell runs with suspicious keywords. Seems solid. Catches code injection, right?</p>
+    <p>Now let's deploy it in a real environment:</p>
+    <ol>
+      <li><strong>Your software deployment tool (SCCM, Ansible) runs PowerShell scripts with DownloadString.</strong> Alert every 30 seconds. Disable the rule.</li>
+      <li><strong>Your backup vendor runs scheduled PowerShell jobs that invoke expressions.</strong> Thousands of alerts per day. Tune it out.</li>
+      <li><strong>Your developers have scripts with "IEX" in comments.</strong> Execution fires on comment lines. Noise.</li>
+      <li><strong>Your EDR has whitelisting for Microsoft-signed PowerShell; your SIEM doesn't.</strong> It alerts on things EDR already allowed.</li>
+    </ol>
+    <p>By week two, detection engineers have disabled half the rule. By month one, it's gone. And when an attacker <em>actually</em> uses PowerShell injection, it's not being monitored because the rule was too noisy to keep.</p>
+    <p><strong>The rule didn't fail because it was poorly written. It failed because it was environment-agnostic.</strong></p>
+    <h2>Why Generic Rules Don't Survive Contact with Reality</h2>
+    <p>Detection rules written in a vacuum assume: no legitimate tools use the same technique; all environments have the same baseline behaviour; detection can be tuned to pure signal; attackers use the same techniques in every environment. All false.</p>
+    <p>In a real environment:</p>
+    <p><strong>1. Legitimate tooling is weird.</strong> Your backup software might use SMB in ways that look like lateral movement. Your monitoring agent might inject DLLs that look like persistence. Your deployment pipeline might run binaries with command-line obfuscation that looks like evasion.</p>
+    <p><strong>2. Baselines vary wildly.</strong> A developer workstation runs PowerShell constantly. A kiosk never does. A bank branch server runs different software than your headquarters. A rule tuned for one environment is useless or too noisy in another.</p>
+    <p><strong>3. Tuning for signal means losing sensitivity.</strong> You can build a rule that catches 100% of attacks — but it'll also alert on 10,000 false positives. There's no free lunch.</p>
+    <p><strong>4. Attackers adapt to your environment.</strong> An attacker who knows you monitor PowerShell won't use PowerShell. They'll use legitimate admin tools, scheduled tasks, or techniques that blend into your baseline.</p>
+    <h2>The Real Problem With Sigma</h2>
+    <p>Sigma is excellent. Open-source, community-driven, better than nothing. But Sigma is a <em>language</em>, not a solution. It's like saying "I have a hammer" and expecting to build a house. You need a builder.</p>
+    <p>When people drop Sigma rules from the internet into their SIEM without context, they get either blindly tuned rules (so permissive they're useless), overly aggressive rules (so noisy they're turned off within a week), or rules that don't apply — designed for environments completely different from yours.</p>
+    <p>I've seen security teams import 1000 Sigma rules and then abandon 900 of them. That's not a detection programme; that's security theatre.</p>
+    <h2>What Actually Works</h2>
+    <p>Effective detection is built bottom-up, not top-down.</p>
+    <p><strong>Start with your environment baseline.</strong> Run your legitimate tools and systems for a week. Capture: normal PowerShell execution patterns, normal network connections, normal process relationships, normal file writes. Write this down. This is your signal floor. Anything below this is noise; anything above is suspicious.</p>
+    <p><strong>Then build detection for your actual threats.</strong> Not MITRE ATT&amp;CK. Not Sigma. Your threats. FIN7 would use living-off-the-land techniques in <em>your</em> environment. Ransomware would move laterally using <em>your</em> admin tools.</p>
+    <p><strong>Example:</strong> You know that administrative access to your financial database should only come from 3 specific systems, at 2 PM on Mondays (batch job), from 2 specific service accounts. Anything else? Alert immediately. No false positives because you know your baseline.</p>
+    <p><strong>Tune for precision, not coverage.</strong> Don't try to detect every possible attack technique. Detect the ones that matter <em>to you</em>. Ten precise, high-fidelity rules that catch real attacks beat 1000 rules that trigger on everything.</p>
+    <h2>The Role of Generic Rules</h2>
+    <p>Sigma and community rules aren't useless. They're a starting point — a hypothesis library. Use them like this:</p>
+    <ol>
+      <li><strong>Review</strong> — Which techniques are relevant to my threat model?</li>
+      <li><strong>Understand</strong> — What is this rule trying to catch? How does it work?</li>
+      <li><strong>Evaluate</strong> — Would this detect an attack in my environment, or would it be lost in noise?</li>
+      <li><strong>Adapt</strong> — Rewrite it for my baseline. Add context (system type, user, time of day). Whitelist known legitimate use cases.</li>
+      <li><strong>Test</strong> — Run it against historical data. Does it catch what you expect? How many false positives?</li>
+      <li><strong>Deploy</strong> — Only if it's precise enough to keep tuned for more than a month.</li>
+    </ol>
+    <h2>The Uncomfortable Truth</h2>
+    <p>If your detection programme consists of rules from the internet, Sigma rules you didn't adapt, detection thresholds you didn't tune, and coverage of every MITRE ATT&amp;CK technique — then you have a detection programme in name only.</p>
+    <p><strong>Detection engineering is environment-specific work.</strong> It can't be outsourced to community rules or vendor defaults. It requires someone who understands your systems, your threats, and your tools. That person is on your team. Or you don't have effective detection.</p>
+    <h2>What's Next</h2>
+    <ol>
+      <li>Audit your rules. How many do you actually tune and maintain? Delete the rest.</li>
+      <li>Establish your baseline. Document normal behaviour for critical systems.</li>
+      <li>Build environment-specific rules for your threat model. Don't import; adapt.</li>
+      <li>Focus on precision. Ten good rules beat 1000 mediocre rules.</li>
+      <li>Invest in the people who know your environment. That's where effective detection lives.</li>
+    </ol>
+    <hr>
+    <p><em>Next: Building a detection baseline for your critical systems. Plus: A real case where generic rules missed an entire attack.</em></p>
+  </div>
+  <div class="article-nav">
+    <div class="article-nav-item">
+      <div class="article-nav-label">Previous Post</div>
+      <a class="article-nav-title" href="#" onclick="showArticle('post1');return false">← Your Purple Team Test Failed Because Your Threat Model Is Wrong</a>
+    </div>
+    <div class="article-nav-item next">
+      <div class="article-nav-label">Next Post</div>
+      <a class="article-nav-title" href="#" onclick="showArticle('post3');return false">Why Your Red Team Tests Are Designed to Fail →</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════ POST 3 ═══════════════════════════════════ -->
+<div class="article-page" id="post3">
+<div class="container">
+  <a class="back-link" href="#" onclick="showHome();return false">← All posts</a>
+  <div class="article-header">
+    <div class="tags">
+      <span class="tag">Red Team</span>
+      <span class="tag">Purple Teaming</span>
+    </div>
+    <h1 style="margin-top:16px">Why Your Red Team Tests Are Designed to Fail (And You Don't Know It)</h1>
+    <div class="article-header-meta">
+      <span class="author">Hugh McGauran</span>
+      <span>April 3, 2026</span>
+      <span>6 min read</span>
+    </div>
+  </div>
+  <div class="article-body">
+    <p>Red team comes in on Monday. They've got a scope, a timeline, and a list of techniques to test. By Friday, they've "successfully executed" initial access, lateral movement, persistence, and exfiltration.</p>
+    <p>Blue team reviews the engagement. They have a list of "findings." Detection missed everything. Security posture looks weak.</p>
+    <p>So you hire another consultant. You buy more tooling. You run the test again next quarter. Same results.</p>
+    <p>Here's what nobody tells you: <strong>Your red team isn't testing what you think they're testing.</strong></p>
+    <h2>The Scope Problem</h2>
+    <p>Let me walk you through a real engagement. Client is a mid-market insurance company. They scope the red team exercise: "Test our security posture against advanced threats. Use realistic techniques. Show us what an attacker could do."</p>
+    <p>Red team scope: initial access (everything), lateral movement (everything on the network), persistence (any means necessary), exfiltration (any data, any method).</p>
+    <p>This sounds comprehensive. It's actually a fantasy. An attacker targeting this client doesn't have "any means necessary" access to "everything on the network." Hard segmentation blocks them. Certain accounts have additional logging. Egress is constrained.</p>
+    <p>But the red team scope doesn't acknowledge these constraints. So red team tests in a sandbox where every attack succeeds because they're not fighting the real environment — they're fighting an idealised version of it.</p>
+    <h2>The Environment Problem</h2>
+    <p>Red team asks: "What systems can we access?" Blue team (or the client) says: "Whatever an attacker could realistically access." This is ambiguous. So red team interprets it broadly: everything reachable on the network is fair game.</p>
+    <p>What they should have asked: "What systems can an attacker realistically access given our segmentation, credential controls, and monitoring?"</p>
+    <p>A real attacker targeting insurance data doesn't have access to the file servers in marketing, the development lab, or the HVAC management system. But if nobody explicitly excludes those from scope, red team tests them anyway. Then when red team successfully gets to the marketing server (which has no monitoring), blue team documents it as a detection failure. Really, it's a scope definition failure.</p>
+    <h2>The Technique Problem</h2>
+    <p>Red team gets creative. They use techniques that sound realistic but aren't actually part of any real attack chain for this environment:</p>
+    <ul>
+      <li>Kerberos relay attacks (requires certain network conditions that don't exist here)</li>
+      <li>Memory-only persistence (requires no EDR; EDR is deployed)</li>
+      <li>Named pipe lateral movement (works in the test, but in production the pipes are monitored)</li>
+      <li>PowerShell obfuscation (detected by their logging; they just didn't run it in the test)</li>
+    </ul>
+    <p>Red team succeeds because they're testing in isolation. They're testing: "Is this technique <em>possible</em>?" not "Is this technique <em>undetectable in your environment</em>?"</p>
+    <h2>The Time Problem</h2>
+    <p>Red team has unlimited time to find a path. An attacker has limited time before they're detected.</p>
+    <p>Real attack: Attacker lands, spends 30 minutes poking around, tries three things, gets blocked on the third, leaves or adapts.</p>
+    <p>Red team test: Attacker lands, tries thirty things over a week, finds one that works, uses it, succeeds. The persistence and thoroughness of a week-long engagement is not representative of the speed and detection requirements of a real intrusion.</p>
+    <h2>What This Means</h2>
+    <p>Your red team engagement tells you: "Over an extended period, using known techniques, with no time pressure, against systems we can freely access, we were able to move laterally and exfiltrate data."</p>
+    <p>What it doesn't tell you: "Against your actual threat model, in real time, with your actual monitoring in place, this is what would happen." Those are very different questions.</p>
+    <h2>The Better Approach</h2>
+    <p>Real-world red team engagements should be scoped to match reality:</p>
+    <ol>
+      <li><strong>Threat-model driven scope.</strong> Don't test "everything." Test what your actual adversary would target and how they'd move.</li>
+      <li><strong>Time-limited and detection-aware.</strong> Red team doesn't have unlimited time. They have 48 hours to land, move, and exfil before they assume they're burned. Blue team knows they're in the environment and is actively hunting.</li>
+      <li><strong>Constrained to realistic access.</strong> Red team starts from actual initial access vector, not "we've already compromised a workstation." They work with the access they actually get.</li>
+      <li><strong>Detection evasion is the goal, not secondary.</strong> If it's immediately flagged, it fails — doesn't matter if the technique "works."</li>
+      <li><strong>Realistic tool constraints.</strong> Red team uses tools an attacker would actually use. If they'd avoid Mimikatz because EDR would catch it, they do.</li>
+    </ol>
+    <h2>A Simple Test</h2>
+    <p>Ask yourself:</p>
+    <ul>
+      <li>Did red team use techniques because they were realistic for your threat model, or because they worked in the test?</li>
+      <li>Would your actual threat actor have access to every system red team tested?</li>
+      <li>Did red team have to evade detection, or was it just running commands and seeing what worked?</li>
+      <li>Were there time or detection constraints that matched a real attack?</li>
+    </ul>
+    <p>If the answer to any of these is "not really," your engagement was testing techniques, not threats.</p>
+    <hr>
+    <p><em>Next: How to properly scope a red team exercise. Plus: A case study where realistic constraints changed the entire engagement outcome.</em></p>
+  </div>
+  <div class="article-nav">
+    <div class="article-nav-item">
+      <div class="article-nav-label">Previous Post</div>
+      <a class="article-nav-title" href="#" onclick="showArticle('post2');return false">← Detection Engineering in a Real Environment</a>
+    </div>
+    <div class="article-nav-item next">
+      <div class="article-nav-label">Next Post</div>
+      <a class="article-nav-title" href="#" onclick="showArticle('post4');return false">Purple Teaming That Actually Works →</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════ POST 4 ═══════════════════════════════════ -->
+<div class="article-page" id="post4">
+<div class="container">
+  <a class="back-link" href="#" onclick="showHome();return false">← All posts</a>
+  <div class="article-header">
+    <div class="tags">
+      <span class="tag">Purple Teaming</span>
+      <span class="tag">Red Team</span>
+      <span class="tag">Blue Team</span>
+    </div>
+    <h1 style="margin-top:16px">Purple Teaming That Actually Works: A Framework for Real Collaboration</h1>
+    <div class="article-header-meta">
+      <span class="author">Hugh McGauran</span>
+      <span>April 10, 2026</span>
+      <span>8 min read</span>
+    </div>
+  </div>
+  <div class="article-body">
+    <p>You've got a red team and a blue team. They hate each other.</p>
+    <p>Red team thinks blue team is incompetent because they don't understand adversary tradecraft. Blue team thinks red team is reckless because they don't understand operational risk. They don't talk unless it's a quarterly "engagement."</p>
+    <p>Then someone tells you about "purple teaming" and you think: "Problem solved." It's not. Purple teaming is a methodology that requires real work. Most programmes fail because they're treated as a project (quarterly test) instead of a practice (continuous collaboration).</p>
+    <p>Here's how to actually do it.</p>
+    <h2>The Failure Mode</h2>
+    <p>Most purple team attempts follow this pattern:</p>
+    <p><strong>Month 1:</strong> Announce purple team programme. Red and blue teams meet. There's optimism.</p>
+    <p><strong>Month 2–3:</strong> Red team runs a "collaborative exercise." Blue team watches. Debrief is awkward.</p>
+    <p><strong>Month 4:</strong> Nothing changes. Red team goes back to attacks. Blue team goes back to reactive defence.</p>
+    <p><strong>Month 5:</strong> "Why aren't we purple teaming anymore?" Another meeting gets scheduled.</p>
+    <p><strong>Month 6–12:</strong> Quarterly reports replace continuous collaboration. Programme becomes checkboxes.</p>
+    <p>Why does this happen? Because purple teaming requires fundamentally different thinking, and no one allocated time for that shift.</p>
+    <h2>What Purple Teaming Actually Is</h2>
+    <p>Purple teaming isn't red team + blue team in the same room. It's: <strong>continuous, aligned, threat-model-driven collaboration between attack and defence.</strong></p>
+    <p>That's different from red teaming (I attack; you detect what I did), blue teaming (I defend; hope you don't break my things), penetration testing (contract engagement with findings), or security auditing (compliance check).</p>
+    <p>Purple teaming means: red team understands blue team's detection capabilities. Blue team understands attack sequences. Both teams align on what matters. Both teams iterate continuously to improve both attack and defence. Collaboration is built into operations, not scheduled quarterly.</p>
+    <h2>The Framework</h2>
+    <h3>1. Establish Shared Threat Model (Week 1)</h3>
+    <p>Red and blue teams sit together. No red team slides, no blue team slides. Just reality. Questions to answer together:</p>
+    <ul>
+      <li>Who threatens us? (Be specific: APT groups, competitors, insiders, criminals)</li>
+      <li>What do they want? (Data, disruption, espionage, financial gain)</li>
+      <li>How do they typically access our environment?</li>
+      <li>What paths exist from initial access to objective?</li>
+      <li>How much time do they have?</li>
+      <li>What detection would burn them?</li>
+    </ul>
+    <p>Document this. Write it down. "We believe APT28 targets financial services via spear-phishing for initial access. They move laterally within 2–4 hours. They exfil via HTTPS to infrastructure we can't block." <strong>This is not a consultant document. This is the shared foundation.</strong></p>
+    <h3>2. Map Realistic Attack Paths (Week 2–3)</h3>
+    <p>Given that threat model, what are the actual attack paths? Not "everything MITRE ATT&amp;CK says is possible." The paths your threat model actually uses.</p>
+    <p>Draw them, then blue team adds detection points at each stage. Now you have an attack sequence and a detection sequence. This is what you test. Not everything. This.</p>
+    <h3>3. Red Team Operates Within Constraints (Ongoing)</h3>
+    <p>Red team's job changes. They don't try to breach the environment. They try to follow the realistic threat path while evading detection.</p>
+    <p>Rules: start from your actual initial access vector; move only to systems your threat model would target; use tools and techniques your threat model would use; avoid detection — don't just run commands.</p>
+    <p>When red team succeeds: "We successfully executed the threat model while avoiding detection." When red team fails: "We were detected at the lateral movement phase." Both are valuable. Both tell blue team something real.</p>
+    <h3>4. Blue Team Hunts Actively (Ongoing)</h3>
+    <p>Blue team doesn't passively watch. They actively hunt for the attack. Weekly threat hunting sessions:</p>
+    <ul>
+      <li>"Given our threat model, what would the initial access look like?"</li>
+      <li>"What can we detect in the first 30 minutes?"</li>
+      <li>"Can we spot lateral movement before they reach the objective?"</li>
+    </ul>
+    <p>Use Atomic Red Team playbooks, but scoped to your paths. Update detection rules based on what red team teaches them about evasion.</p>
+    <h3>5. Iterate (Monthly)</h3>
+    <p>Once a month, red and blue teams sync: what did red team learn about evasion? What did blue team learn about detection? Did our threat model change? How did we do against a realistic attack?</p>
+    <p>Adjust next month's exercises based on findings.</p>
+    <h2>The Governance</h2>
+    <p>For this to work, you need time allocation: red team 20% of their week to collaborative exercises; blue team 5–10% of SOC time to active hunting; leadership time for monthly sync and iteration.</p>
+    <p>Metrics (not vanity metrics): mean time to detect for the threat model you care about; mean time to respond; techniques red team is using that blue team isn't catching; detection improvements month-over-month.</p>
+    <h2>The Uncomfortable Part</h2>
+    <p>This takes time. It's not shiny. It doesn't fit neatly on a security audit checklist. You can't outsource it to a quarterly consultant. You need your own people, aligned on threat model, collaborating continuously.</p>
+    <p>If you don't have budget for this, purple teaming won't work. You'll run the motions and get the theatre. But if you do this right, you get: red team that understands why they're testing what they're testing; blue team that detects threats faster; security operations that improve month-over-month; collaborative culture instead of siloed teams.</p>
+    <h2>Checklist: Do You Have a Real Purple Team Programme?</h2>
+    <ul>
+      <li>Shared, documented threat model (written, agreed by red + blue + leadership)</li>
+      <li>Realistic attack paths (not "test everything," but specific sequences)</li>
+      <li>Red team constrained to threat model (not unlimited scope)</li>
+      <li>Blue team actively hunting (not passively monitoring)</li>
+      <li>Monthly sync between teams (with iteration, not just reporting)</li>
+      <li>Detection improving month-over-month (measurable)</li>
+      <li>Budget allocated (not "squeeze in around other work")</li>
+    </ul>
+    <p>If you don't check most of these, you have a red team and a blue team. You don't have purple teaming.</p>
+    <hr>
+    <p><em>Next: Building a threat model with your team. Plus: How to measure purple team ROI without vanity metrics.</em></p>
+  </div>
+  <div class="article-nav">
+    <div class="article-nav-item">
+      <div class="article-nav-label">Previous Post</div>
+      <a class="article-nav-title" href="#" onclick="showArticle('post3');return false">← Why Your Red Team Tests Are Designed to Fail</a>
+    </div>
+    <div class="article-nav-item"></div>
+  </div>
+</div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div><strong style="color:#fff">purpleteam.ai</strong><br><span style="color:var(--muted)">Purple teaming for practitioners.</span></div>
+      <div class="footer-links">
+        <a href="#" onclick="showHome();return false">Essays</a>
+        <a href="#" onclick="showSection('about-section');return false">About</a>
+        <a href="#" onclick="showSection('newsletter-section');return false">Newsletter</a>
+      </div>
+      <div>© 2026 Hugh McGauran</div>
+    </div>
+  </div>
+</footer>
+<script>
+function showHome(){
+  document.getElementById('homepage').style.display='block';
+  document.querySelectorAll('.article-page').forEach(p=>p.style.display='none');
+  window.scrollTo(0,0);
+}
+function showArticle(id){
+  document.getElementById('homepage').style.display='none';
+  document.querySelectorAll('.article-page').forEach(p=>p.style.display='none');
+  document.getElementById(id).style.display='block';
+  window.scrollTo(0,0);
+}
+function showSection(id){
+  showHome();
+  setTimeout(()=>{
+    var el=document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  },50);
+}
+</script>
 </body>
 </html>
-
